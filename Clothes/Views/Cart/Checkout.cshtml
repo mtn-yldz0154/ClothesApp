@@ -1,0 +1,227 @@
+﻿@using DressApp.WebUi.Data.Models
+@model OrderModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .container {
+        max-width: 960px;
+    }
+
+    .lh-condensed {
+        line-height: 1.25;
+    }
+</style>
+
+<!-- Navbar Start -->
+<div class="container-fluid">
+    <div class="row border-top px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <h6 class="m-0">Categories</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
+                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                            <a href="" class="dropdown-item">Men's Dresses</a>
+                            <a href="" class="dropdown-item">Women's Dresses</a>
+                            <a href="" class="dropdown-item">Baby's Dresses</a>
+                        </div>
+                    </div>
+                    <a href="" class="nav-item nav-link">Shirts</a>
+                    <a href="" class="nav-item nav-link">Jeans</a>
+                    <a href="" class="nav-item nav-link">Swimwear</a>
+                    <a href="" class="nav-item nav-link">Sleepwear</a>
+                    <a href="" class="nav-item nav-link">Sportswear</a>
+                    <a href="" class="nav-item nav-link">Jumpsuits</a>
+                    <a href="" class="nav-item nav-link">Blazers</a>
+                    <a href="" class="nav-item nav-link">Jackets</a>
+                    <a href="" class="nav-item nav-link">Shoes</a>
+                </div>
+            </nav>
+        </div>
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                <a href="" class="text-decoration-none d-block d-lg-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="shop.html" class="nav-item nav-link">Shop</a>
+                        <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                <a href="checkout.html" class="dropdown-item">Checkout</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="" class="nav-item nav-link">Login</a>
+                        <a href="" class="nav-item nav-link">Register</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Checkout</p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Checkout Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h4 class="font-weight-semi-bold mb-4"> Ödeme Bilgileri</h4>
+                <form  class="needs-validation" asp-controller="Cart" asp-action="Checkout">
+                    <input type="hidden" name="cartId" value="0" />
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="@Model.FirstName">Adınız</label>
+                            <input type="text" class="form-control" asp-for="@Model.FirstName">
+                            <div class="invalid-feedback"> Valid first name is required. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="@Model.LastName" for="lastName">Soyadınız</label>
+                            <input class="form-control" type="text" asp-for="@Model.LastName">
+                            <div class="invalid-feedback"> Valid last name is required. </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.Email">Mail Hesabınız </label>
+                        <input asp-for="@Model.Email" type="email" class="form-control" placeholder="you@example.com">
+                        <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="@Model.Phone" for="address">Telefon</label>
+                        <input asp-for="@Model.Phone" type="text" class="form-control" placeholder="+90555555555" required="">
+                        <div class="invalid-feedback"> Please enter your shipping address. </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="@Model.Address" for="address2">Adres  </label>
+                        <input asp-for="@Model.Address" type="text" class="form-control" placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="@Model.City" for="address2">Şehir  </label>
+                        <input asp-for="@Model.City" type="text" class="form-control" placeholder="Istanbul">
+                    </div>
+
+                    <hr class="mb-4">
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="@Model.CardName">Kart Adı</label>
+                            <input asp-for="@Model.CardName" type="text" class="form-control" placeholder="" required="">
+
+                            <div class="invalid-feedback"> Name on card is required </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="@Model.CardNumber">Kart Numarası</label>
+                            <input asp-for="@Model.CardNumber" type="text" class="form-control" placeholder="" required="">
+                            <div class="invalid-feedback"> Credit card number is required </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="@Model.ExpirationMonth">Son Kullanma Ayı</label>
+                            <input asp-for="@Model.ExpirationMonth" type="text" class="form-control" placeholder="" required="">
+                            <div class="invalid-feedback"> Expiration date required </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="@Model.ExpirationYear">Son Kullanma Yılı</label>
+                            <input asp-for="@Model.ExpirationYear" type="text" class="form-control" placeholder="" required="">
+                            <div class="invalid-feedback"> Expiration date required </div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="@Model.Cvc">CVV</label>
+                            <input asp-for="@Model.Cvc" type="text" class="form-control" placeholder="" required="">
+                            <div class="invalid-feedback"> Security code required </div>
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block mb-6" type="submit">Continue to checkout</button>
+
+                    </div>
+                    <hr class="mb-4">
+
+                </form>
+            </div>
+          
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="font-weight-medium mb-3">Products</h5>
+                    @foreach (var item in Model.CartModel.CartItems)
+                    {
+                        <div class="d-flex justify-content-between">
+                            <p>@item.Name</p>
+                            <p>$@item.Price</p>
+                        </div>
+                    }
+
+                  
+                    <hr class="mt-0">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">$@Model.CartModel.TotalPrice()</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">$@(Model.CartModel.TotalPrice()+10)</h5>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- Checkout End -->
+
+
+
+
+
+
+

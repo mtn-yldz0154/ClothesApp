@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DressApp.WebUi.props" />
+</Project>
